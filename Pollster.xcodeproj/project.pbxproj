@@ -1,0 +1,306 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		83726ADA1665E00300EF7BE1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83726AD91665E00300EF7BE1 /* UIKit.framework */; };
+		83726ADC1665E00300EF7BE1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83726ADB1665E00300EF7BE1 /* Foundation.framework */; };
+		83726ADE1665E00300EF7BE1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83726ADD1665E00300EF7BE1 /* CoreGraphics.framework */; };
+		83726AE41665E00300EF7BE1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83726AE21665E00300EF7BE1 /* InfoPlist.strings */; };
+		83726AE61665E00300EF7BE1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83726AE51665E00300EF7BE1 /* main.m */; };
+		83726AEA1665E00300EF7BE1 /* CAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83726AE91665E00300EF7BE1 /* CAAppDelegate.m */; };
+		83726AEC1665E00300EF7BE1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 83726AEB1665E00300EF7BE1 /* Default.png */; };
+		83726AEE1665E00300EF7BE1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83726AED1665E00300EF7BE1 /* Default@2x.png */; };
+		83726AF01665E00300EF7BE1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83726AEF1665E00300EF7BE1 /* Default-568h@2x.png */; };
+		83726AF31665E00300EF7BE1 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83726AF11665E00300EF7BE1 /* MainStoryboard.storyboard */; };
+		83726AF61665E00300EF7BE1 /* CAMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83726AF51665E00300EF7BE1 /* CAMasterViewController.m */; };
+		83726AF91665E00300EF7BE1 /* CADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83726AF81665E00300EF7BE1 /* CADetailViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		83726AD51665E00300EF7BE1 /* Pollster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pollster.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83726AD91665E00300EF7BE1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		83726ADB1665E00300EF7BE1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		83726ADD1665E00300EF7BE1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		83726AE11665E00300EF7BE1 /* Pollster-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pollster-Info.plist"; sourceTree = "<group>"; };
+		83726AE31665E00300EF7BE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		83726AE51665E00300EF7BE1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		83726AE71665E00300EF7BE1 /* Pollster-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pollster-Prefix.pch"; sourceTree = "<group>"; };
+		83726AE81665E00300EF7BE1 /* CAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAAppDelegate.h; sourceTree = "<group>"; };
+		83726AE91665E00300EF7BE1 /* CAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAAppDelegate.m; sourceTree = "<group>"; };
+		83726AEB1665E00300EF7BE1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		83726AED1665E00300EF7BE1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		83726AEF1665E00300EF7BE1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		83726AF21665E00300EF7BE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		83726AF41665E00300EF7BE1 /* CAMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAMasterViewController.h; sourceTree = "<group>"; };
+		83726AF51665E00300EF7BE1 /* CAMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAMasterViewController.m; sourceTree = "<group>"; };
+		83726AF71665E00300EF7BE1 /* CADetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CADetailViewController.h; sourceTree = "<group>"; };
+		83726AF81665E00300EF7BE1 /* CADetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CADetailViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		83726AD21665E00300EF7BE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83726ADA1665E00300EF7BE1 /* UIKit.framework in Frameworks */,
+				83726ADC1665E00300EF7BE1 /* Foundation.framework in Frameworks */,
+				83726ADE1665E00300EF7BE1 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		83726ACA1665E00300EF7BE1 = {
+			isa = PBXGroup;
+			children = (
+				83726ADF1665E00300EF7BE1 /* Pollster */,
+				83726AD81665E00300EF7BE1 /* Frameworks */,
+				83726AD61665E00300EF7BE1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		83726AD61665E00300EF7BE1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83726AD51665E00300EF7BE1 /* Pollster.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		83726AD81665E00300EF7BE1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				83726AD91665E00300EF7BE1 /* UIKit.framework */,
+				83726ADB1665E00300EF7BE1 /* Foundation.framework */,
+				83726ADD1665E00300EF7BE1 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		83726ADF1665E00300EF7BE1 /* Pollster */ = {
+			isa = PBXGroup;
+			children = (
+				83726AE81665E00300EF7BE1 /* CAAppDelegate.h */,
+				83726AE91665E00300EF7BE1 /* CAAppDelegate.m */,
+				83726AF11665E00300EF7BE1 /* MainStoryboard.storyboard */,
+				83726AF41665E00300EF7BE1 /* CAMasterViewController.h */,
+				83726AF51665E00300EF7BE1 /* CAMasterViewController.m */,
+				83726AF71665E00300EF7BE1 /* CADetailViewController.h */,
+				83726AF81665E00300EF7BE1 /* CADetailViewController.m */,
+				83726AE01665E00300EF7BE1 /* Supporting Files */,
+			);
+			path = Pollster;
+			sourceTree = "<group>";
+		};
+		83726AE01665E00300EF7BE1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				83726AE11665E00300EF7BE1 /* Pollster-Info.plist */,
+				83726AE21665E00300EF7BE1 /* InfoPlist.strings */,
+				83726AE51665E00300EF7BE1 /* main.m */,
+				83726AE71665E00300EF7BE1 /* Pollster-Prefix.pch */,
+				83726AEB1665E00300EF7BE1 /* Default.png */,
+				83726AED1665E00300EF7BE1 /* Default@2x.png */,
+				83726AEF1665E00300EF7BE1 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		83726AD41665E00300EF7BE1 /* Pollster */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83726AFC1665E00300EF7BE1 /* Build configuration list for PBXNativeTarget "Pollster" */;
+			buildPhases = (
+				83726AD11665E00300EF7BE1 /* Sources */,
+				83726AD21665E00300EF7BE1 /* Frameworks */,
+				83726AD31665E00300EF7BE1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pollster;
+			productName = Pollster;
+			productReference = 83726AD51665E00300EF7BE1 /* Pollster.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83726ACC1665E00300EF7BE1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CA;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = Polutropos;
+			};
+			buildConfigurationList = 83726ACF1665E00300EF7BE1 /* Build configuration list for PBXProject "Pollster" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 83726ACA1665E00300EF7BE1;
+			productRefGroup = 83726AD61665E00300EF7BE1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				83726AD41665E00300EF7BE1 /* Pollster */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		83726AD31665E00300EF7BE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83726AE41665E00300EF7BE1 /* InfoPlist.strings in Resources */,
+				83726AEC1665E00300EF7BE1 /* Default.png in Resources */,
+				83726AEE1665E00300EF7BE1 /* Default@2x.png in Resources */,
+				83726AF01665E00300EF7BE1 /* Default-568h@2x.png in Resources */,
+				83726AF31665E00300EF7BE1 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		83726AD11665E00300EF7BE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83726AE61665E00300EF7BE1 /* main.m in Sources */,
+				83726AEA1665E00300EF7BE1 /* CAAppDelegate.m in Sources */,
+				83726AF61665E00300EF7BE1 /* CAMasterViewController.m in Sources */,
+				83726AF91665E00300EF7BE1 /* CADetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		83726AE21665E00300EF7BE1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83726AE31665E00300EF7BE1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		83726AF11665E00300EF7BE1 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83726AF21665E00300EF7BE1 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		83726AFA1665E00300EF7BE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		83726AFB1665E00300EF7BE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		83726AFD1665E00300EF7BE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pollster/Pollster-Prefix.pch";
+				INFOPLIST_FILE = "Pollster/Pollster-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		83726AFE1665E00300EF7BE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pollster/Pollster-Prefix.pch";
+				INFOPLIST_FILE = "Pollster/Pollster-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		83726ACF1665E00300EF7BE1 /* Build configuration list for PBXProject "Pollster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83726AFA1665E00300EF7BE1 /* Debug */,
+				83726AFB1665E00300EF7BE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83726AFC1665E00300EF7BE1 /* Build configuration list for PBXNativeTarget "Pollster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83726AFD1665E00300EF7BE1 /* Debug */,
+				83726AFE1665E00300EF7BE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83726ACC1665E00300EF7BE1 /* Project object */;
+}
