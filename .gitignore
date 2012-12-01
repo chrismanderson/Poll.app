@@ -67,7 +67,7 @@ build/
 #
 
 xcuserdata
-
+xcuserdata/
 
 ####
 # XCode 4 workspaces - more detailed
@@ -110,4 +110,5 @@ xcuserdata
 ####
 # UNKNOWN: recommended by others, but I can't discover what these files are
 #
+# 
 # ...none. Everything is now explained.
