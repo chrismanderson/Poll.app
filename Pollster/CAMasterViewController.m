@@ -7,12 +7,14 @@
 //
 
 #import "CAMasterViewController.h"
-
 #import "CADetailViewController.h"
 
-@interface CAMasterViewController () {
-    NSMutableArray *_objects;
-}
+#import <RestKit/RestKit.h>
+#import "Charts.h"
+#import "Estimate.h"
+
+@interface CAMasterViewController ()
+@property (strong, nonatomic) NSArray *data;
 @end
 
 @implementation CAMasterViewController
@@ -25,6 +27,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Set up initial load.
+    RKURL *baseURL = [RKURL URLWithBaseURLString:@"http://elections.huffingtonpost.com/pollster/api"];
+    RKObjectManager *objectManager = [RKObjectManager objectManagerWithBaseURL:baseURL];
+    objectManager.client.baseURL = baseURL;
+    
+    RKObjectMapping *estimateMapping = [RKObjectMapping mappingForClass:[Estimate class]];
+    [estimateMapping mapAttributes:@"value", @"choice", nil];
+    
+    RKObjectMapping *chartMapping = [RKObjectMapping mappingForClass:[Charts class]];
+    [chartMapping mapKeyPathsToAttributes:@"title", @"title", nil];
+    [objectManager.mappingProvider setMapping:chartMapping forKeyPath:@""];
+    [chartMapping mapKeyPath:@"estimates" toRelationship:@"estimates" withMapping:estimateMapping];
+    
+    [self sendRequest];
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
@@ -38,15 +55,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender
-{
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
 
 #pragma mark - Table View
 
@@ -57,15 +65,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return self.data.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    Charts *chart = self.data[indexPath.row];
+    cell.textLabel.text = [chart title];
     return cell;
 }
 
@@ -75,15 +83,6 @@
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
-}
 
 /*
 // Override to support rearranging the table view.
@@ -105,9 +104,35 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
+        NSDate *object = self.data[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
+}
+
+- (void)sendRequest
+{
+    NSDictionary *queryParams = @{ @"topic" : @"obama-job-approval" };
+    RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    
+    RKURL *URL = [RKURL URLWithBaseURL:[objectManager baseURL] resourcePath:@"/charts" queryParameters:queryParams];
+    [objectManager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@", [URL resourcePath], [URL query]] delegate:self];
+}
+
+- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error
+{
+    NSLog(@"Error: %@", [error localizedDescription]);
+}
+
+- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
+    NSLog(@"response code: %d", [response statusCode]);
+}
+
+- (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects
+{
+    NSLog(@"objects[%d]", [objects count]);
+    self.data = objects;
+    
+    [self.tableView reloadData];
 }
 
 @end

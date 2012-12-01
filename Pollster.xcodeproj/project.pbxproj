@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		833911A616670E4F00FDF460 /* Estimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 833911A516670E4F00FDF460 /* Estimate.m */; };
 		83726ADA1665E00300EF7BE1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83726AD91665E00300EF7BE1 /* UIKit.framework */; };
 		83726ADC1665E00300EF7BE1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83726ADB1665E00300EF7BE1 /* Foundation.framework */; };
 		83726ADE1665E00300EF7BE1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83726ADD1665E00300EF7BE1 /* CoreGraphics.framework */; };
@@ -27,6 +28,7 @@
 		83726B231665E0E500EF7BE1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83726B221665E0E500EF7BE1 /* SystemConfiguration.framework */; };
 		83726B251665E0E900EF7BE1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83726B241665E0E900EF7BE1 /* QuartzCore.framework */; };
 		83726B271665E0F200EF7BE1 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83726B261665E0F200EF7BE1 /* libxml2.dylib */; };
+		83726B2A1665E1E800EF7BE1 /* Charts.m in Sources */ = {isa = PBXBuildFile; fileRef = 83726B291665E1E800EF7BE1 /* Charts.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		833911A416670E4F00FDF460 /* Estimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Estimate.h; sourceTree = "<group>"; };
+		833911A516670E4F00FDF460 /* Estimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Estimate.m; sourceTree = "<group>"; };
 		83726AD51665E00300EF7BE1 /* Pollster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pollster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83726AD91665E00300EF7BE1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83726ADB1665E00300EF7BE1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -101,6 +105,8 @@
 		83726B221665E0E500EF7BE1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		83726B241665E0E900EF7BE1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		83726B261665E0F200EF7BE1 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		83726B281665E1E800EF7BE1 /* Charts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Charts.h; sourceTree = "<group>"; };
+		83726B291665E1E800EF7BE1 /* Charts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Charts.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +170,10 @@
 			isa = PBXGroup;
 			children = (
 				83726AE81665E00300EF7BE1 /* CAAppDelegate.h */,
+				83726B281665E1E800EF7BE1 /* Charts.h */,
+				833911A416670E4F00FDF460 /* Estimate.h */,
+				833911A516670E4F00FDF460 /* Estimate.m */,
+				83726B291665E1E800EF7BE1 /* Charts.m */,
 				83726AE91665E00300EF7BE1 /* CAAppDelegate.m */,
 				83726AF11665E00300EF7BE1 /* MainStoryboard.storyboard */,
 				83726AF41665E00300EF7BE1 /* CAMasterViewController.h */,
@@ -317,6 +327,8 @@
 				83726AEA1665E00300EF7BE1 /* CAAppDelegate.m in Sources */,
 				83726AF61665E00300EF7BE1 /* CAMasterViewController.m in Sources */,
 				83726AF91665E00300EF7BE1 /* CADetailViewController.m in Sources */,
+				83726B2A1665E1E800EF7BE1 /* Charts.m in Sources */,
+				833911A616670E4F00FDF460 /* Estimate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +463,7 @@
 				83726AFE1665E00300EF7BE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
