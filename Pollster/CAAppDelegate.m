@@ -12,8 +12,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [self customizeAppearance];
     return YES;
+}
+
+- (void)customizeAppearance
+{
+    // Customize the title text for *all* UINavigationBars
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIFont fontWithName:@"ProximaNova-Semibold" size:0.0],
+      UITextAttributeFont,
+      nil]];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

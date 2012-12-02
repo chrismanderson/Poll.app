@@ -15,6 +15,9 @@
 
 @interface CAMasterViewController ()
 @property (strong, nonatomic) NSArray *data;
+@property (strong, nonatomic) NSMutableArray *filteredTableData;
+
+@property (nonatomic, assign) bool isFiltered;
 @end
 
 @implementation CAMasterViewController
@@ -26,7 +29,10 @@
 
 - (void)viewDidLoad
 {
+    // tints the navbar
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:213.0/255.0 green:166.0/255.0 blue:39.0/255.0 alpha:1];
     [super viewDidLoad];
+    
     
     // Set up initial load.
     RKURL *baseURL = [RKURL URLWithBaseURLString:@"http://elections.huffingtonpost.com/pollster/api"];
@@ -38,15 +44,32 @@
     
     RKObjectMapping *chartMapping = [RKObjectMapping mappingForClass:[Charts class]];
     [chartMapping mapKeyPathsToAttributes:@"title", @"title", nil];
+    [chartMapping mapKeyPathsToAttributes:@"last_updated", @"lastUpdated", nil];
     [objectManager.mappingProvider setMapping:chartMapping forKeyPath:@""];
     [chartMapping mapKeyPath:@"estimates" toRelationship:@"estimates" withMapping:estimateMapping];
     
+//    [self sendRequest];
     [self sendRequest];
+    [self sendSecondRequest];
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    [self.refreshControl addTarget:self action:@selector(refreshControl:) forControlEvents:UIControlEventValueChanged];
+    
+    self.searchBar.delegate = (id)self;
+    
+    CGRect newBounds = self.tableView.bounds;
+    newBounds.origin.y = newBounds.origin.y + self.searchBar.bounds.size.height;
+    self.tableView.bounds = newBounds;
+}
+
+
+- (void)refreshControl:(UIRefreshControl *)sender{
+    [self sendRequest];
+    [sender endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,16 +88,32 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.data.count;
+    int rowCount;
+    if (self.isFiltered)
+        rowCount = self.filteredTableData.count;
+    else
+        rowCount = self.data.count;
+    
+    return rowCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    Charts *chart;
+    if(self.isFiltered)
+        chart = self.filteredTableData[indexPath.row];
+    else
+        chart = self.data[indexPath.row];
 
-    Charts *chart = self.data[indexPath.row];
     cell.textLabel.text = [chart title];
     return cell;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar1;
+{
+    [self.searchBar resignFirstResponder];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -109,6 +148,14 @@
     }
 }
 
+- (void)sendSecondRequest
+{
+    RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    
+    RKURL *URL = [RKURL URLWithBaseURL:[objectManager baseURL] resourcePath:@"/charts/" queryParameters:nil];
+    [objectManager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@", [URL resourcePath], [URL query]] delegate:self];
+}
+
 - (void)sendRequest
 {
     NSDictionary *queryParams = @{ @"topic" : @"obama-job-approval" };
@@ -131,6 +178,35 @@
 {
     NSLog(@"objects[%d]", [objects count]);
     self.data = objects;
+    
+    [self.tableView reloadData];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.searchBar resignFirstResponder];
+}
+
+-(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
+{
+    if(text.length == 0)
+    {
+        self.isFiltered = FALSE;
+    }
+    else
+    {
+        self.isFiltered = true;
+        self.filteredTableData = [[NSMutableArray alloc] init];
+        
+        for (Charts* chart in self.data)
+        {
+            NSRange nameRange = [chart.title rangeOfString:text options:NSCaseInsensitiveSearch];
+            NSRange descriptionRange = [chart.title rangeOfString:text options:NSCaseInsensitiveSearch];
+            if(nameRange.location != NSNotFound || descriptionRange.location != NSNotFound)
+            {
+                [self.filteredTableData addObject:chart];
+            }
+        }
+    }
     
     [self.tableView reloadData];
 }

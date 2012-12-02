@@ -29,6 +29,10 @@
 		83726B251665E0E900EF7BE1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83726B241665E0E900EF7BE1 /* QuartzCore.framework */; };
 		83726B271665E0F200EF7BE1 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83726B261665E0F200EF7BE1 /* libxml2.dylib */; };
 		83726B2A1665E1E800EF7BE1 /* Charts.m in Sources */ = {isa = PBXBuildFile; fileRef = 83726B291665E1E800EF7BE1 /* Charts.m */; };
+		83F29216166AA2FD00D58698 /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83E602D6166A9F8A00123257 /* ProximaNova-Regular.otf */; };
+		83F29217166AA54A00D58698 /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83E602D7166A9F8A00123257 /* ProximaNova-Semibold.otf */; };
+		83F29218166AA68000D58698 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83E602D0166A9F8A00123257 /* ProximaNova-Bold.otf */; };
+		83F2921B166AC5A200D58698 /* CAEstimateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F2921A166AC5A200D58698 /* CAEstimateCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +111,18 @@
 		83726B261665E0F200EF7BE1 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		83726B281665E1E800EF7BE1 /* Charts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Charts.h; sourceTree = "<group>"; };
 		83726B291665E1E800EF7BE1 /* Charts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Charts.m; sourceTree = "<group>"; };
+		83E602CF166A9F8A00123257 /* ProximaNova-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Black.otf"; sourceTree = "<group>"; };
+		83E602D0166A9F8A00123257 /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
+		83E602D1166A9F8A00123257 /* ProximaNova-BoldIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-BoldIt.otf"; sourceTree = "<group>"; };
+		83E602D2166A9F8A00123257 /* ProximaNova-Extrabold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Extrabold.otf"; sourceTree = "<group>"; };
+		83E602D3166A9F8A00123257 /* ProximaNova-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.otf"; sourceTree = "<group>"; };
+		83E602D4166A9F8A00123257 /* ProximaNova-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-LightItalic.otf"; sourceTree = "<group>"; };
+		83E602D5166A9F8A00123257 /* ProximaNova-RegItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-RegItalic.otf"; sourceTree = "<group>"; };
+		83E602D6166A9F8A00123257 /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
+		83E602D7166A9F8A00123257 /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
+		83E602D8166A9F8A00123257 /* ProximaNova-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		83F29219166AC5A100D58698 /* CAEstimateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAEstimateCell.h; sourceTree = "<group>"; };
+		83F2921A166AC5A200D58698 /* CAEstimateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAEstimateCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +192,8 @@
 				83726B291665E1E800EF7BE1 /* Charts.m */,
 				83726AE91665E00300EF7BE1 /* CAAppDelegate.m */,
 				83726AF11665E00300EF7BE1 /* MainStoryboard.storyboard */,
+				83F29219166AC5A100D58698 /* CAEstimateCell.h */,
+				83F2921A166AC5A200D58698 /* CAEstimateCell.m */,
 				83726AF41665E00300EF7BE1 /* CAMasterViewController.h */,
 				83726AF51665E00300EF7BE1 /* CAMasterViewController.m */,
 				83726AF71665E00300EF7BE1 /* CADetailViewController.h */,
@@ -188,6 +206,7 @@
 		83726AE01665E00300EF7BE1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				83E602CE166A9F3D00123257 /* Fonts */,
 				83726AE11665E00300EF7BE1 /* Pollster-Info.plist */,
 				83726AE21665E00300EF7BE1 /* InfoPlist.strings */,
 				83726AE51665E00300EF7BE1 /* main.m */,
@@ -209,6 +228,23 @@
 				83726B161665E03E00EF7BE1 /* RestKitResources.bundle */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		83E602CE166A9F3D00123257 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				83E602CF166A9F8A00123257 /* ProximaNova-Black.otf */,
+				83E602D0166A9F8A00123257 /* ProximaNova-Bold.otf */,
+				83E602D1166A9F8A00123257 /* ProximaNova-BoldIt.otf */,
+				83E602D2166A9F8A00123257 /* ProximaNova-Extrabold.otf */,
+				83E602D3166A9F8A00123257 /* ProximaNova-Light.otf */,
+				83E602D4166A9F8A00123257 /* ProximaNova-LightItalic.otf */,
+				83E602D5166A9F8A00123257 /* ProximaNova-RegItalic.otf */,
+				83E602D6166A9F8A00123257 /* ProximaNova-Regular.otf */,
+				83E602D7166A9F8A00123257 /* ProximaNova-Semibold.otf */,
+				83E602D8166A9F8A00123257 /* ProximaNova-SemiboldItalic.otf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,6 +349,9 @@
 				83726AEE1665E00300EF7BE1 /* Default@2x.png in Resources */,
 				83726AF01665E00300EF7BE1 /* Default-568h@2x.png in Resources */,
 				83726AF31665E00300EF7BE1 /* MainStoryboard.storyboard in Resources */,
+				83F29216166AA2FD00D58698 /* ProximaNova-Regular.otf in Resources */,
+				83F29217166AA54A00D58698 /* ProximaNova-Semibold.otf in Resources */,
+				83F29218166AA68000D58698 /* ProximaNova-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +368,7 @@
 				83726AF91665E00300EF7BE1 /* CADetailViewController.m in Sources */,
 				83726B2A1665E1E800EF7BE1 /* Charts.m in Sources */,
 				833911A616670E4F00FDF460 /* Estimate.m in Sources */,
+				83F2921B166AC5A200D58698 /* CAEstimateCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

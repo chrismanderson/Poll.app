@@ -13,5 +13,6 @@
 
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSArray *estimates;
+@property (strong, nonatomic) NSDate *lastUpdated;
 
 @end

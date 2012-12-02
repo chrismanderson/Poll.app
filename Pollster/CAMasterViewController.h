@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <RestKit/RestKit.h>
 
-@interface CAMasterViewController : UITableViewController <RKObjectLoaderDelegate>
+@interface CAMasterViewController : UITableViewController <RKObjectLoaderDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
