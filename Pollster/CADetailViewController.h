@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <RestKit/RestKit.h>
 
-@interface CADetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+@interface CADetailViewController : UIViewController <RKObjectLoaderDelegate, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
 @property (strong, nonatomic) id detailItem;
 
 @property (strong, nonatomic) IBOutlet UITableView *estimateTable;
+@property (strong, nonatomic) IBOutlet UITableView *historyTable;
 @property (strong, nonatomic) IBOutlet UILabel *estimate;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UITableViewCell *estimateCell;

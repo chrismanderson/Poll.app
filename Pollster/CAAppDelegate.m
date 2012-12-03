@@ -24,6 +24,9 @@
       [UIFont fontWithName:@"ProximaNova-Semibold" size:0.0],
       UITextAttributeFont,
       nil]];
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1]];
+    [[UISearchBar appearance] setTintColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1]];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

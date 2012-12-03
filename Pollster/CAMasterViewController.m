@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     // tints the navbar
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:213.0/255.0 green:166.0/255.0 blue:39.0/255.0 alpha:1];
+    
     [super viewDidLoad];
     
     
@@ -42,20 +42,31 @@
     RKObjectMapping *estimateMapping = [RKObjectMapping mappingForClass:[Estimate class]];
     [estimateMapping mapAttributes:@"value", @"choice", nil];
     
+    RKObjectMapping *dateEstimateMapping = [RKObjectMapping mappingForClass:[DateEstimates class]];
+    [dateEstimateMapping mapAttributes:@"date", nil];
+    
     RKObjectMapping *chartMapping = [RKObjectMapping mappingForClass:[Charts class]];
     [chartMapping mapKeyPathsToAttributes:@"title", @"title", nil];
+    [chartMapping mapKeyPathsToAttributes:@"slug", @"slug", nil];
     [chartMapping mapKeyPathsToAttributes:@"last_updated", @"lastUpdated", nil];
+    
     [objectManager.mappingProvider setMapping:chartMapping forKeyPath:@""];
     [chartMapping mapKeyPath:@"estimates" toRelationship:@"estimates" withMapping:estimateMapping];
     
+    [dateEstimateMapping mapKeyPath:@"estimates" toRelationship:@"estimates" withMapping:estimateMapping];
+    [chartMapping mapKeyPath:@"estimates_by_date" toRelationship:@"estimatesByDate" withMapping:dateEstimateMapping];
+
+    
+    // Grab the reference to the router from the manager
+    RKObjectRouter *router = [RKObjectManager sharedManager].router;
+    
+    // Define a default resource path for all unspecified HTTP verbs
+    [router routeClass:[Charts class] toResourcePath:@"/charts/:slug"];
+    
 //    [self sendRequest];
     [self sendRequest];
-    [self sendSecondRequest];
-	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+//    [self sendSecondRequest];
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
     
     [self.refreshControl addTarget:self action:@selector(refreshControl:) forControlEvents:UIControlEventValueChanged];
     
@@ -97,9 +108,24 @@
     return rowCount;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *cellText = [self.data[indexPath.row] title];
+    UIFont *cellFont = [UIFont fontWithName:@"ProximaNova-Bold" size:20.0];
+    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+    
+    return labelSize.height + 20;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.textLabel.numberOfLines = 0;
+        cell.textLabel.font = [UIFont fontWithName:@"ProximaNova-Bold" size:20.0];
+    
     
     Charts *chart;
     if(self.isFiltered)
@@ -143,10 +169,24 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = self.data[indexPath.row];
+        Charts *object = self.data[indexPath.row];
+        
+        if (object.estimatesByDate == nil) {
+            NSLog(@"Chart Slug: %@", [object slug]);
+            [ [RKObjectManager sharedManager] getObject:object delegate:[segue destinationViewController]];
+        }
+        
+        
         [[segue destinationViewController] setDetailItem:object];
     }
 }
+//
+//- (void)getChartSlug:(NSString *)slug
+//{
+//    RKObjectManager *objectManager = [RKObjectManager sharedManager];
+//    RKURL *URL = [RKURL URLWithBaseURL:[objectManager baseURL] resourcePath:@"/charts" queryParameters:nil];
+//    [objectManager getO:[NSString stringWithFormat:@"%@/%@", [URL resourcePath], slug] delegate:self];
+//}
 
 - (void)sendSecondRequest
 {
@@ -174,12 +214,20 @@
     NSLog(@"response code: %d", [response statusCode]);
 }
 
+- (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObject:(id)object
+{
+    NSLog(@"Object:%@", [object slug]);
+}
+
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects
 {
     NSLog(@"objects[%d]", [objects count]);
-    self.data = objects;
+    if (objects.count > 1) {
+        self.data = objects;
+        
+        [self.tableView reloadData];
+    }
     
-    [self.tableView reloadData];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {

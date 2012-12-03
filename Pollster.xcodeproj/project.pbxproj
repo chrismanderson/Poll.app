@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		833911A616670E4F00FDF460 /* Estimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 833911A516670E4F00FDF460 /* Estimate.m */; };
+		8356A56E166BE9C500D54C03 /* DateEstimates.m in Sources */ = {isa = PBXBuildFile; fileRef = 8356A56D166BE9C500D54C03 /* DateEstimates.m */; };
+		8356A571166C360800D54C03 /* CAMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8356A570166C360800D54C03 /* CAMenuViewController.m */; };
+		8356A580166C530F00D54C03 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8356A57F166C530E00D54C03 /* UIViewController+JASidePanel.m */; };
+		83654837166BAE9800F48604 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83654836166BAE9800F48604 /* JASidePanelController.m */; };
+		8365483A166BAEB500F48604 /* CASideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83654839166BAEB500F48604 /* CASideViewController.m */; };
 		83726ADA1665E00300EF7BE1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83726AD91665E00300EF7BE1 /* UIKit.framework */; };
 		83726ADC1665E00300EF7BE1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83726ADB1665E00300EF7BE1 /* Foundation.framework */; };
 		83726ADE1665E00300EF7BE1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83726ADD1665E00300EF7BE1 /* CoreGraphics.framework */; };
@@ -83,6 +88,16 @@
 /* Begin PBXFileReference section */
 		833911A416670E4F00FDF460 /* Estimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Estimate.h; sourceTree = "<group>"; };
 		833911A516670E4F00FDF460 /* Estimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Estimate.m; sourceTree = "<group>"; };
+		8356A56C166BE9C500D54C03 /* DateEstimates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateEstimates.h; sourceTree = "<group>"; };
+		8356A56D166BE9C500D54C03 /* DateEstimates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateEstimates.m; sourceTree = "<group>"; };
+		8356A56F166C360800D54C03 /* CAMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMenuViewController.h; sourceTree = "<group>"; };
+		8356A570166C360800D54C03 /* CAMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAMenuViewController.m; sourceTree = "<group>"; };
+		8356A57E166C530E00D54C03 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
+		8356A57F166C530E00D54C03 /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
+		83654835166BAE9800F48604 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASidePanelController.h; sourceTree = "<group>"; };
+		83654836166BAE9800F48604 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
+		83654838166BAEB500F48604 /* CASideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CASideViewController.h; sourceTree = "<group>"; };
+		83654839166BAEB500F48604 /* CASideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CASideViewController.m; sourceTree = "<group>"; };
 		83726AD51665E00300EF7BE1 /* Pollster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pollster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83726AD91665E00300EF7BE1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83726ADB1665E00300EF7BE1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,6 +165,8 @@
 		83726ACA1665E00300EF7BE1 = {
 			isa = PBXGroup;
 			children = (
+				83654838166BAEB500F48604 /* CASideViewController.h */,
+				83654839166BAEB500F48604 /* CASideViewController.m */,
 				83726B261665E0F200EF7BE1 /* libxml2.dylib */,
 				83726B241665E0E900EF7BE1 /* QuartzCore.framework */,
 				83726B221665E0E500EF7BE1 /* SystemConfiguration.framework */,
@@ -185,8 +202,14 @@
 		83726ADF1665E00300EF7BE1 /* Pollster */ = {
 			isa = PBXGroup;
 			children = (
+				8356A57E166C530E00D54C03 /* UIViewController+JASidePanel.h */,
+				8356A57F166C530E00D54C03 /* UIViewController+JASidePanel.m */,
+				83654835166BAE9800F48604 /* JASidePanelController.h */,
+				83654836166BAE9800F48604 /* JASidePanelController.m */,
 				83726AE81665E00300EF7BE1 /* CAAppDelegate.h */,
 				83726B281665E1E800EF7BE1 /* Charts.h */,
+				8356A56C166BE9C500D54C03 /* DateEstimates.h */,
+				8356A56D166BE9C500D54C03 /* DateEstimates.m */,
 				833911A416670E4F00FDF460 /* Estimate.h */,
 				833911A516670E4F00FDF460 /* Estimate.m */,
 				83726B291665E1E800EF7BE1 /* Charts.m */,
@@ -195,6 +218,8 @@
 				83F29219166AC5A100D58698 /* CAEstimateCell.h */,
 				83F2921A166AC5A200D58698 /* CAEstimateCell.m */,
 				83726AF41665E00300EF7BE1 /* CAMasterViewController.h */,
+				8356A56F166C360800D54C03 /* CAMenuViewController.h */,
+				8356A570166C360800D54C03 /* CAMenuViewController.m */,
 				83726AF51665E00300EF7BE1 /* CAMasterViewController.m */,
 				83726AF71665E00300EF7BE1 /* CADetailViewController.h */,
 				83726AF81665E00300EF7BE1 /* CADetailViewController.m */,
@@ -369,6 +394,11 @@
 				83726B2A1665E1E800EF7BE1 /* Charts.m in Sources */,
 				833911A616670E4F00FDF460 /* Estimate.m in Sources */,
 				83F2921B166AC5A200D58698 /* CAEstimateCell.m in Sources */,
+				83654837166BAE9800F48604 /* JASidePanelController.m in Sources */,
+				8365483A166BAEB500F48604 /* CASideViewController.m in Sources */,
+				8356A56E166BE9C500D54C03 /* DateEstimates.m in Sources */,
+				8356A571166C360800D54C03 /* CAMenuViewController.m in Sources */,
+				8356A580166C530F00D54C03 /* UIViewController+JASidePanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
