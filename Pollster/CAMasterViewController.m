@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Polutropos. All rights reserved.
 //
 
+
 #import "CAMasterViewController.h"
 #import "CADetailViewController.h"
 
@@ -13,27 +14,39 @@
 #import "Charts.h"
 #import "Estimate.h"
 
+#define defaultSlug @"obama-job-approval, obama-favorable-rating, us-economy-better-or-worse, obama-job-approval-economy, congress-job-approval, us-satisfaction, us-right-direction-wrong-track, party-identification"
+
 @interface CAMasterViewController ()
 @property (strong, nonatomic) NSArray *data;
 @property (strong, nonatomic) NSMutableArray *filteredTableData;
+@property (strong, nonatomic) NSArray *defaultPolls;
 
 @property (nonatomic, assign) bool isFiltered;
+
 @end
 
 @implementation CAMasterViewController
 
+- (void)toggleAllPolls:(bool)isAllPolls
+{
+    self.isAllPolls = isAllPolls;
+    [self sendRequest];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    
+    self.isAllPolls = NO;
+    self.defaultPolls = [defaultSlug componentsSeparatedByString:@", "];
 }
 
-- (void)viewDidLoad
+- (void)loadAllTheThings
 {
-    // tints the navbar
-    
-    [super viewDidLoad];
-    
-    
     // Set up initial load.
     RKURL *baseURL = [RKURL URLWithBaseURLString:@"http://elections.huffingtonpost.com/pollster/api"];
     RKObjectManager *objectManager = [RKObjectManager objectManagerWithBaseURL:baseURL];
@@ -55,7 +68,7 @@
     
     [dateEstimateMapping mapKeyPath:@"estimates" toRelationship:@"estimates" withMapping:estimateMapping];
     [chartMapping mapKeyPath:@"estimates_by_date" toRelationship:@"estimatesByDate" withMapping:dateEstimateMapping];
-
+    
     
     // Grab the reference to the router from the manager
     RKObjectRouter *router = [RKObjectManager sharedManager].router;
@@ -63,10 +76,7 @@
     // Define a default resource path for all unspecified HTTP verbs
     [router routeClass:[Charts class] toResourcePath:@"/charts/:slug"];
     
-//    [self sendRequest];
     [self sendRequest];
-//    [self sendSecondRequest];
-
     
     [self.refreshControl addTarget:self action:@selector(refreshControl:) forControlEvents:UIControlEventValueChanged];
     
@@ -75,6 +85,12 @@
     CGRect newBounds = self.tableView.bounds;
     newBounds.origin.y = newBounds.origin.y + self.searchBar.bounds.size.height;
     self.tableView.bounds = newBounds;
+}
+
+- (void)viewDidLoad
+{    
+    [super viewDidLoad];
+    [self loadAllTheThings];
 }
 
 
@@ -86,7 +102,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -110,11 +125,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellText = [self.data[indexPath.row] title];
-    UIFont *cellFont = [UIFont fontWithName:@"ProximaNova-Bold" size:20.0];
+    NSString *cellText    = [self.data[indexPath.row] title];
+    UIFont *cellFont      = [UIFont fontWithName:@"ProximaNova-Bold" size:20.0];
     CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
-    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-    
+    CGSize labelSize      = [cellText sizeWithFont:cellFont
+                                 constrainedToSize:constraintSize
+                                     lineBreakMode:NSLineBreakByWordWrapping];
     return labelSize.height + 20;
 }
 
@@ -122,10 +138,9 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        cell.textLabel.numberOfLines = 0;
-        cell.textLabel.font = [UIFont fontWithName:@"ProximaNova-Bold" size:20.0];
-    
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.font = [UIFont fontWithName:@"ProximaNova-Bold" size:20.0];
     
     Charts *chart;
     if(self.isFiltered)
@@ -142,66 +157,23 @@
     [self.searchBar resignFirstResponder];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         Charts *object = self.data[indexPath.row];
-        
         if (object.estimatesByDate == nil) {
-            NSLog(@"Chart Slug: %@", [object slug]);
             [ [RKObjectManager sharedManager] getObject:object delegate:[segue destinationViewController]];
         }
-        
-        
         [[segue destinationViewController] setDetailItem:object];
     }
-}
-//
-//- (void)getChartSlug:(NSString *)slug
-//{
-//    RKObjectManager *objectManager = [RKObjectManager sharedManager];
-//    RKURL *URL = [RKURL URLWithBaseURL:[objectManager baseURL] resourcePath:@"/charts" queryParameters:nil];
-//    [objectManager getO:[NSString stringWithFormat:@"%@/%@", [URL resourcePath], slug] delegate:self];
-//}
-
-- (void)sendSecondRequest
-{
-    RKObjectManager *objectManager = [RKObjectManager sharedManager];
-    
-    RKURL *URL = [RKURL URLWithBaseURL:[objectManager baseURL] resourcePath:@"/charts/" queryParameters:nil];
-    [objectManager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@", [URL resourcePath], [URL query]] delegate:self];
 }
 
 - (void)sendRequest
 {
-    NSDictionary *queryParams = @{ @"topic" : @"obama-job-approval" };
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
-    
-    RKURL *URL = [RKURL URLWithBaseURL:[objectManager baseURL] resourcePath:@"/charts" queryParameters:queryParams];
+    RKURL *URL = [RKURL URLWithBaseURL:[objectManager baseURL] resourcePath:@"/charts/" queryParameters:nil];
     [objectManager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@", [URL resourcePath], [URL query]] delegate:self];
 }
 
@@ -214,23 +186,24 @@
     NSLog(@"response code: %d", [response statusCode]);
 }
 
-- (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObject:(id)object
-{
-    NSLog(@"Object:%@", [object slug]);
-}
-
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects
 {
-    NSLog(@"objects[%d]", [objects count]);
-    if (objects.count > 1) {
+    NSPredicate *sPredicate = [NSPredicate predicateWithFormat:@"slug in %@", self.defaultPolls];
+    if (objects.count > 1 && !self.isAllPolls) {
+        self.data = [objects filteredArrayUsingPredicate:sPredicate];
+        self.navigationBar.title = @"Top Polls";
+    } else {
         self.data = objects;
-        
-        [self.tableView reloadData];
+        self.navigationBar.title = @"All Polls";
     }
-    
+    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    NSArray *descriptors = [NSArray arrayWithObject:valueDescriptor];
+    self.data = [self.data sortedArrayUsingDescriptors:descriptors];
+    [self.tableView reloadData];
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
     [self.searchBar resignFirstResponder];
 }
 

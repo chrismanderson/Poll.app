@@ -16,7 +16,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *estimateTable;
 @property (strong, nonatomic) IBOutlet UITableView *historyTable;
 @property (strong, nonatomic) IBOutlet UILabel *estimate;
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UITableViewCell *estimateCell;
 @property (strong, nonatomic) IBOutlet UILabel *lastUpdatedLabel;
 @end

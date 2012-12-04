@@ -10,6 +10,12 @@
 #import <RestKit/RestKit.h>
 
 @interface CAMasterViewController : UITableViewController <RKObjectLoaderDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+
+@property (nonatomic, assign) bool isAllPolls;
+
+@property (weak, nonatomic) IBOutlet UINavigationItem *navigationBar;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+- (void)toggleAllPolls:(bool)isAllPolls;
 
 @end

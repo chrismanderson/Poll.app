@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CASideViewController.h"
+
 @interface CAMenuViewController : UITableViewController
 
 @end

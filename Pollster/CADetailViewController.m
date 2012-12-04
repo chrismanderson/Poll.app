@@ -24,13 +24,11 @@
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error
 {
-    NSLog(@"Error: %@", [error localizedDescription]);
-    
+    NSLog(@"Error: %@", [error localizedDescription]);    
 }
 
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
-    NSLog(@"In Detail code: %d", [response statusCode]);
-    
+- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response
+{
     [[self historyTable] reloadData];
 }
 
@@ -43,7 +41,6 @@
 
 - (void)setDetailItem:(Charts *)newDetailItem
 {
-
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
         
@@ -56,7 +53,6 @@
 - (void)configureView
 {
     // Update the user interface for the detail item.
-
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [self.detailItem title];
         self.estimate.text = [[self.detailItem estimates] description];
@@ -82,8 +78,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if ([tableView isEqual:self.historyTable]) {
-        NSLog(@"trying herer");
-        NSLog(@"%u", [[[self detailItem] estimatesByDate] count]);
         return [[[self detailItem] estimatesByDate] count];
     } else {
         return 1;
@@ -93,7 +87,6 @@
 - (NSString *)tableView:(UITableView *)tableView
 titleForHeaderInSection:(NSInteger)section
 {
-	
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM-dd-yyyy"];
     
@@ -116,35 +109,20 @@ titleForHeaderInSection:(NSInteger)section
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterPercentStyle];
+    [formatter setMinimumFractionDigits:1];
+
     if ([tableView isEqual:self.estimateTable]) {
         CAEstimateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EstimateCell"];
-        
-        /*
-         *   Now that we have a cell we can configure it to display the data corresponding to
-         *   this row/section
-         */
         Estimate *item = self.data[indexPath.row];
-        NSLog(@"%@", item);
-        
-        
-        
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        [formatter setNumberStyle:NSNumberFormatterPercentStyle];
-        [formatter setMinimumFractionDigits:1];
-        
         
         cell.percentageLabel.text = [NSString stringWithFormat:@"%3.1f%%", [item.value doubleValue]];
         cell.titleLabel.text = item.choice;
-        //    NSString *path = [[NSBundle mainBundle] pathForResource:[item objectForKey:@"imageKey"] ofType:@"png"];
-        //    UIImage *theImage = [UIImage imageWithContentsOfFile:path];
-        //    cell.imageView.image = theImage;
-        
-        /* Now that the cell is configured we return it to the table view so that it can display it */
         
         return cell;
         
     } else if ([tableView isEqual:self.historyTable]) {
-        NSLog(@"trying index table");
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"HistoryCell"];
         
         // get the right DateEstimate
@@ -153,14 +131,7 @@ titleForHeaderInSection:(NSInteger)section
         // get the right estimate
         Estimate *item = dateEstimate.estimates[indexPath.row];
         cell.textLabel.text = item.choice;
-        
-        
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        [formatter setNumberStyle:NSNumberFormatterPercentStyle];
-        [formatter setMinimumFractionDigits:1];
-
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%3.1f%%", [item.value doubleValue]];;
-        
         
         return cell;
     } else {
@@ -170,12 +141,10 @@ titleForHeaderInSection:(NSInteger)section
 }
 
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.detailDescriptionLabel.font = [UIFont fontWithName:@"ProximaNova-Bold" size:24.0];
-	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
 }
 
